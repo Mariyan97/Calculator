@@ -1,3 +1,4 @@
+//selectors
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const clearButton = document.querySelector(".clear-button");
@@ -8,9 +9,13 @@ const calculateButton = document.querySelector(".calculate");
 
 let currentExpression = "";
 
+//  Clear Button
+
 clearButton.addEventListener("click", () => {
   clearDisplay();
 });
+
+// Numbers
 
 numbers.forEach((button) => {
   button.addEventListener("click", () => {
@@ -18,19 +23,21 @@ numbers.forEach((button) => {
   });
 });
 
+//  Operators
+
 operators.forEach((button) => {
   button.addEventListener("click", () => {
     handleOperatorClick(button.textContent);
   });
 });
 
+// Delete Button
+
 deleteButton.addEventListener("click", () => {
   handleDelete();
 });
 
-calculateButton.addEventListener("click", () => {
-  calculateResult();
-});
+// Function for clearing display
 
 function clearDisplay() {
   displayBefore.textContent = "";
@@ -38,12 +45,16 @@ function clearDisplay() {
   currentExpression = "";
 }
 
+// Function to handle more than 12 numbers input
+
 function handleNumberClick(value) {
   if (displayEnd.textContent.length < 12) {
     displayEnd.textContent += value;
     currentExpression += value;
   }
 }
+
+// Function to handle only 1 click of the selected operator.
 
 function handleOperatorClick(operator) {
   decimalEntered = false;
@@ -54,6 +65,23 @@ function handleOperatorClick(operator) {
   }
 }
 
+// Delete Button
+
+function handleDelete() {
+  if (displayEnd.textContent.length > 0) {
+    displayEnd.textContent = displayEnd.textContent.slice(0, -1);
+    currentExpression = currentExpression.slice(0, -1);
+  }
+}
+
+// Calculate Button
+
+calculateButton.addEventListener("click", () => {
+  calculateResult();
+});
+
+// Calculate Result
+
 function calculateResult() {
   try {
     const result = calculateExpression(currentExpression);
@@ -63,12 +91,7 @@ function calculateResult() {
   }
 }
 
-function handleDelete() {
-  if (displayEnd.textContent.length > 0) {
-    displayEnd.textContent = displayEnd.textContent.slice(0, -1);
-    currentExpression = currentExpression.slice(0, -1);
-  }
-}
+// Function to calculate.
 
 function calculateExpression(expression) {
   const tokens = expression.split(" ");
@@ -93,4 +116,23 @@ function calculateExpression(expression) {
   }
 
   return result;
+}
+
+// Function to handle decimal to be clicked only once.
+
+let decimalEntered = false;
+
+function handleNumberClick(value) {
+  if (value === ".") {
+    if (!decimalEntered) {
+      displayEnd.textContent += value;
+      currentExpression += value;
+      decimalEntered = true;
+    }
+  } else {
+    if (displayEnd.textContent.length < 12) {
+      displayEnd.textContent += value;
+      currentExpression += value;
+    }
+  }
 }
