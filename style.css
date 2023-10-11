@@ -12,8 +12,9 @@
 }
 
 .calculator {
-  width: 360px;
-  height: 600px;
+  max-height: 800px;
+  min-width: 360px;
+  min-height: 600px;
   background-color: #f5f5f5;
   display: flex;
   justify-content: center;
@@ -72,7 +73,7 @@ button:hover {
 }
 
 .display {
-  height: 150px;
+  min-height: 150px;
   width: 360px;
   display: flex;
   justify-content: flex-end;
@@ -94,6 +95,8 @@ button:hover {
   color: #2d2b3a;
   text-align: right;
   padding: 10px 20px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .operator,
