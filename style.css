@@ -47,13 +47,13 @@ button:hover {
   background-color: #363062;
   color: #f5f5f5;
 }
-.equal {
+.calculate {
   background-color: #f99417;
   color: #1a172f;
   font-size: 34px;
   transition: 150ms ease-in-out;
 }
-.equal:hover {
+.calculate:hover {
   background-color: #ff8d00;
   color: #1a172f;
 }
