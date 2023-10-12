@@ -86,6 +86,7 @@ function calculateResult() {
   try {
     const result = calculateExpression(currentExpression);
     displayEnd.textContent = result;
+    displayBefore.textContent = "";
   } catch (error) {
     displayEnd.textContent = "Error";
   }
